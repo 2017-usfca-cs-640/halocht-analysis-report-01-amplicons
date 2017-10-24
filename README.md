@@ -2,7 +2,7 @@
 # Using amplicon data to understand the microbiome
 ## Due as a pull request on Monday, November 6th, 2017 before 4:30 pm
 
-The **goal of this assignment** is to have you did even deeper into the Fierer *et al.* dataset, and build your skills in R, markdown, scientific writing, and exploratory data analysis.
+The **goal of this assignment** is to have you dig even deeper into the Fierer *et al.* dataset, and build your skills in R, markdown, scientific writing, and exploratory data analysis.
 
 The data we will be using is from the NCBI Sequence Read Archive study number ERP022657. A summary of the information is available [here](https://www.ncbi.nlm.nih.gov/Traces/study/?WebEnv=NCID_1_128047291_130.14.22.33_5555_1505945515_1626731749_0MetA0_S_HStore&query_key=5). The metadata from this study is included in the git repository for this assignment in a `data/metadata` directory.
 
