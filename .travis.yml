@@ -9,6 +9,6 @@ env:
 r_github_packages:
   - jimhester/lintr
   - leffj/mctoolsr
-script: 
+  - joey711/phyloseq
+script:
   - R -f tests/render_rmds.R
-
