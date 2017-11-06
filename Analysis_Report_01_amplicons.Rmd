@@ -17,7 +17,9 @@ Add about half a page here. In this section instead of first person (I/we), use 
 Predictions (hypotheseses):
 1. There are prevalent phyla of bacteria specifically found on humans that are not found on the computer mice.
 2. These bacteria have health and biological implications that can be correlated.
-3. Lifestyle choices and personal hygeine can be inferred from the human samples where certain bacteria known to be pathogenic reside. 
+3. Possible lifestyle choices and personal hygeine can be inferred from the human samples where certain bacteria known to be pathogenic reside. 
+
+If there is an mis-representation of sequence variants per sample as their appears to be, then that might indicate that the raw-data is not being trimmed, nor processed appropriately.
 
 Add about 1.5-2 pages here. Must cite at least 5 peer reviewed articles.
 
@@ -318,33 +320,11 @@ plot_richness(phyloseq_obj,
 
 ```
 
-```{r Ordination}
-# First remove all OTUs that do not appear more than five times in half of the samples.
-
-PS2 = phyloseq_obj
-PS2_pruned_even = transform_sample_counts(PS2, function(x) 1E6 * x/sum(x))
-wh0 = genefilter_sample(PS2_pruned_even, filterfun_sample(function(x) x > 5), A = nsamples(PS2_pruned_even))
-PS2_pruned = prune_taxa(wh0, PS2_pruned_even)
-
-PS2_pruned_even = transform_sample_counts(PS2_pruned, function(x) 1E6 * x/sum(x))
-
-phylum.sum = tapply(taxa_sums(PS2_pruned_even), tax_table(PS2_pruned_even)[, "Phylum"], sum, na.rm =TRUE)
-top5phyla = names(sort(phylum.sum, TRUE))[1:5]
-PS2_Top5 = prune_taxa((tax_table(PS2_pruned_even)[, "Phylum"] %in% top5phyla), PS2_pruned_even)
-
-human = get_variable(PS2, "Organism_s") %in% c("human skin metagenome")
-sample_data(PS2)$human <- factor(human)
-
-PS2.ord <- ordinate(PS2, "NMDS", "bray")
-p2 = plot_ordination(PS2, PS2.ord, type ="samples", color ="env_feature_s", shape = "human") 
-p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
-```
-
 
 # Creating bar plots: Bar plots will be created to represent distribution of Genus (or in the case where the Genus is not available or specified, then the Family of the Phyla will be plotted instead). This will return bar plots where we can identify unique samples in the dataset that contain either:
 1.) A highly varied mix of of different Genera in one specific sample.
 2.) Samples where either the Genus or even the Phyla is not represented at all.
-3.) Why some Genera are highly abundant in a specific sample (Is it in relation to the sample that it comes from, whether that sample is human, male, female etc.)
+3.) Why some Genera are highly abundant or completely dominate in a specific sample (Is it in relation to the sample that it comes from, whether that sample is human, male, female etc.)
 
 
 ```{r Proteobacteria Representation Across Samples }
@@ -379,26 +359,12 @@ gp.ch = subset_taxa(phyloseq_obj, Phylum == "Fusobacteria")
 plot_bar(gp.ch, fill = "Genus", title = "Fusobacteria Across Samples")
 ```
 
-```{r Ordination}
-# First remove all OTUs that do not appear more than five times in half of the samples.
+```{r Gemmatimonadetes Across Samples}
+gp.ch = subset_taxa(phyloseq_obj, Phylum == "Gemmatimonadetes")
+plot_bar(gp.ch, fill = "Genus", title = "Gemmatimonadetes Across Samples")
+```
 
-PS2 = phyloseq_obj
-PS2_pruned_even = transform_sample_counts(PS2, function(x) 1E6 * x/sum(x))
-wh0 = genefilter_sample(PS2_pruned_even, filterfun_sample(function(x) x > 5), A = nsamples(PS2_pruned_even))
-PS2_pruned = prune_taxa(wh0, PS2_pruned_even)
 
-PS2_pruned_even = transform_sample_counts(PS2_pruned, function(x) 1E6 * x/sum(x))
-
-phylum.sum = tapply(taxa_sums(PS2_pruned_even), tax_table(PS2_pruned_even)[, "Phylum"], sum, na.rm =TRUE)
-top5phyla = names(sort(phylum.sum, TRUE))[1:5]
-PS2_Top5 = prune_taxa((tax_table(PS2_pruned_even)[, "Phylum"] %in% top5phyla), PS2_pruned_even)
-
-human = get_variable(PS2, "Organism_s") %in% c("human skin metagenome")
-sample_data(PS2)$human <- factor(human)
-
-PS2.ord <- ordinate(PS2, "NMDS", "bray")
-p2 = plot_ordination(PS2, PS2.ord, type ="samples", color ="env_feature_s", shape = "human") 
-p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
 ```
 
 # Discussion
