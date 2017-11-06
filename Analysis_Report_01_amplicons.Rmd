@@ -276,25 +276,6 @@ phyloseq_obj <- phyloseq(otu_table(sequence_table_nochim,
                          phy_tree(tree_in)) # phylogeny from sequence variants
 ```
 
-```{r Preprocess OTU table in phyloseq_obj}
-
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ```{r example-phyloseq-plot-1}
 # alpha diversity metrics
@@ -318,15 +299,16 @@ plot_tree(phyloseq_obj,
 
 **Figure 2**: Inferred phylogeny of sequences, with points on tips representing samples within which each particular taxa occurred. Tree represents maximum likelihood phylogeny inferred using RAxML.
 
-```{r Create a second phyloseq obj that does contain phy_tree}
 
-phyloseq_obj_2 <- phyloseq(otu_table(sequence_table_nochim,
-                                   taxa_are_rows = FALSE), 
-                         sample_data(metadata_in), 
-                         tax_table(taxa))
-
-ps2 <- phyloseq_obj_2
-
+```{r}
+plot_richness(phyloseq_obj,
+              x = "samples",
+              measures = c("Shannon", "Simpson"),
+              nrow = (5),
+              color = "Organism_s") +
+  xlab("Sample origin") +
+  geom_jitter(width = 1.0) +
+  theme_dark()
 
 ```
 
@@ -350,73 +332,62 @@ sample_data(PS2)$human <- factor(human)
 PS2.ord <- ordinate(PS2, "NMDS", "bray")
 p2 = plot_ordination(PS2, PS2.ord, type ="samples", color ="env_feature_s", shape = "human") 
 p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
-
-
 ```
 
 
+# Creating bar plots: Bar plots will be created to represent distribution of Genus (or in the case where the Genus is not available or specified, then the Family of the Phyla will be plotted instead). This will return bar plots where we can identify unique samples in the dataset that contain either:
+1.) A highly varied mix of of different Genera in one specific sample.
+2.) Samples where either the Genus or even the Phyla is not represented at all.
+3.) Why some Genera are highly abundant in a specific sample (Is it in relation to the sample that it comes from, whether that sample is human, male, female etc.)
 
 
-
-```{r Creating bar plots }
+```{r Proteobacteria Representation Across Samples }
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Proteobacteria")
-plot_bar(gp.ch, fill = "Genus")
+plot_bar(gp.ch, fill = "Genus", title = "Proteobacteria Representation Across Samples")
 ```
 
-```{r}
+```{r Bacteriodetes Representation Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Bacteroidetes")
-plot_bar(gp.ch, fill = "Genus")
+plot_bar(gp.ch, fill = "Genus", title = "Bacteroidetes Representation Across Samples")
 ```
 
 
-```{r}
+```{r Firmicutes Representation Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Firmicutes")
-plot_bar(gp.ch, fill = "Genus")
+plot_bar(gp.ch, fill = "Genus", title = "Firmicutes Representation Across Samples")
 ```
 
-```{r}
+```{r Cyanobacteria/Chloroplast Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Cyanobacteria/Chloroplast")
-plot_bar(gp.ch, fill = "Family")
+plot_bar(gp.ch, fill = "Family", title = "Cyanobacteria/Chloroplast Across Samples")
 ```
 
-```{r}
+```{r Actinobacteria Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Actinobacteria")
-plot_bar(gp.ch, fill = "Genus")
+plot_bar(gp.ch, fill = "Genus", title = "Actinobacteria Across Samples")
 ```
 
+```{r Ordination}
+# First remove all OTUs that do not appear more than five times in half of the samples.
 
+PS2 = phyloseq_obj
+PS2_pruned_even = transform_sample_counts(PS2, function(x) 1E6 * x/sum(x))
+wh0 = genefilter_sample(PS2_pruned_even, filterfun_sample(function(x) x > 5), A = nsamples(PS2_pruned_even))
+PS2_pruned = prune_taxa(wh0, PS2_pruned_even)
 
+PS2_pruned_even = transform_sample_counts(PS2_pruned, function(x) 1E6 * x/sum(x))
 
-
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-PS2 = filter_taxa(phyloseq_obj, function(x) sum(x > 3) > (0.2*length(x)), TRUE)
-
-sample_data(PS2)$human = factor( get_variable(PS2, "env_feature_s") %in% c("human-associated habitat") )
-
-phylum.sum = tapply(taxa_sums(GP1), tax_table(GP1)[, "Phylum"], sum, na.rm=TRUE)
+phylum.sum = tapply(taxa_sums(PS2_pruned_even), tax_table(PS2_pruned_even)[, "Phylum"], sum, na.rm =TRUE)
 top5phyla = names(sort(phylum.sum, TRUE))[1:5]
-GP1 = prune_taxa((tax_table(GP1)[, "Phylum"] %in% top5phyla), GP1)
+PS2_Top5 = prune_taxa((tax_table(PS2_pruned_even)[, "Phylum"] %in% top5phyla), PS2_pruned_even)
 
-
-human = get_variable(PS2, "env_feature_s") %in% c("human-associated habitat")
+human = get_variable(PS2, "Organism_s") %in% c("human skin metagenome")
 sample_data(PS2)$human <- factor(human)
 
 PS2.ord <- ordinate(PS2, "NMDS", "bray")
-p2 = plot_ordination(PS2, PS2.ord, type ="samples", color ="env_feature_s", shape ="human") 
+p2 = plot_ordination(PS2, PS2.ord, type ="samples", color ="env_feature_s", shape = "human") 
 p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
 ```
-
 
 # Discussion
 
