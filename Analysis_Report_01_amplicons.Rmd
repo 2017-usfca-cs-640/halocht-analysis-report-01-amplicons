@@ -340,34 +340,82 @@ PS2_pruned = prune_taxa(wh0, PS2_pruned_even)
 
 PS2_pruned_even = transform_sample_counts(PS2_pruned, function(x) 1E6 * x/sum(x))
 
-phylum.sum = tapply(taxa_sums(PS2_pruned_even), tax_table(PS2_pruned_even)[, "Phylum"], sum, na.rm=TRUE)
+phylum.sum = tapply(taxa_sums(PS2_pruned_even), tax_table(PS2_pruned_even)[, "Phylum"], sum, na.rm =TRUE)
 top5phyla = names(sort(phylum.sum, TRUE))[1:5]
 PS2_Top5 = prune_taxa((tax_table(PS2_pruned_even)[, "Phylum"] %in% top5phyla), PS2_pruned_even)
+
+human = get_variable(PS2, "Organism_s") %in% c("human skin metagenome")
+sample_data(PS2)$human <- factor(human)
+
+PS2.ord <- ordinate(PS2, "NMDS", "bray")
+p2 = plot_ordination(PS2, PS2.ord, type ="samples", color ="env_feature_s", shape = "human") 
+p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
+
+
 ```
 
 
 
-```{r Plotting ordination}
 
 
-PS2.ord <- ordinate(PS2_Top5, "NMDS", "bray")
-p1 = plot_ordination(PS2_Top5, PS2.ord, type = "taxa", color_cat = "Phylum", title = "taxa")
-print(p1)
-
-
-
-top20 <- names(sort(taxa_sums(phyloseq_obj), decreasing=TRUE))[1:20]
-ps2.top20 <- transform_sample_counts(phyloseq_obj, function(OTU) OTU/sum(OTU))
-ps2.top20 <- prune_taxa(top20, ps2.top20)
-plot_bar(ps2.top20, x="Day", fill="Family") + facet_wrap(~When, scales="free_x")
-
-```
-
-```{r Creating bar graph}
+```{r Creating bar plots }
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Proteobacteria")
 plot_bar(gp.ch, fill = "Genus")
 ```
 
+```{r}
+gp.ch = subset_taxa(phyloseq_obj, Phylum == "Bacteroidetes")
+plot_bar(gp.ch, fill = "Genus")
+```
+
+
+```{r}
+gp.ch = subset_taxa(phyloseq_obj, Phylum == "Firmicutes")
+plot_bar(gp.ch, fill = "Genus")
+```
+
+```{r}
+gp.ch = subset_taxa(phyloseq_obj, Phylum == "Cyanobacteria/Chloroplast")
+plot_bar(gp.ch, fill = "Family")
+```
+
+```{r}
+gp.ch = subset_taxa(phyloseq_obj, Phylum == "Actinobacteria")
+plot_bar(gp.ch, fill = "Genus")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+PS2 = filter_taxa(phyloseq_obj, function(x) sum(x > 3) > (0.2*length(x)), TRUE)
+
+sample_data(PS2)$human = factor( get_variable(PS2, "env_feature_s") %in% c("human-associated habitat") )
+
+phylum.sum = tapply(taxa_sums(GP1), tax_table(GP1)[, "Phylum"], sum, na.rm=TRUE)
+top5phyla = names(sort(phylum.sum, TRUE))[1:5]
+GP1 = prune_taxa((tax_table(GP1)[, "Phylum"] %in% top5phyla), GP1)
+
+
+human = get_variable(PS2, "env_feature_s") %in% c("human-associated habitat")
+sample_data(PS2)$human <- factor(human)
+
+PS2.ord <- ordinate(PS2, "NMDS", "bray")
+p2 = plot_ordination(PS2, PS2.ord, type ="samples", color ="env_feature_s", shape ="human") 
+p2 + geom_polygon(aes(fill=SampleType)) + geom_point(size=5) + ggtitle("samples")
+```
 
 
 # Discussion
