@@ -1,5 +1,5 @@
 ---
-title: "Analysis Report 1: "
+title: "Analysis Report 1: Behind-the-scenes biological implications: A Distribution and representation analyis on a DADA2/Phyloseq Pipeline using a Fierer et. al (2010) dataset"
 author: "Alfredo H. Locht"
 date: "01Nov2017"
 output: github_document
@@ -349,7 +349,7 @@ Bar plots will be created to represent distribution of Genus (or in the case whe
 
 ```{r Proteobacteria Representation Across Samples }
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Proteobacteria")
-plot_bar(gp.ch, fill = "Genus", title = "Proteobacteria Representation Across Samples")
+plot_bar(gp.ch, fill = "Genus", title = "Proteobacteria Genera Distribution Across Samples")
 ```
 **Figure 4**: Representation and Distribution of Proteobacteria Phyla across samples, colored by Genus
 
@@ -359,7 +359,7 @@ Bartonella and Stappia are the most abundant, identifiable Genera sequences abun
 
 ```{r Bacteriodetes Representation Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Bacteroidetes")
-plot_bar(gp.ch, fill = "Genus", title = "Bacteroidetes Representation Across Samples")
+plot_bar(gp.ch, fill = "Genus", title = "Bacteroidetes Genera Distribution Across Samples")
 ```
 
 **Figure 5**: Representation and Distribution of Bacteriodetes Phyla across samples, colored by Genus
@@ -368,7 +368,7 @@ plot_bar(gp.ch, fill = "Genus", title = "Bacteroidetes Representation Across Sam
 
 ```{r Firmicutes Representation Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Firmicutes")
-plot_bar(gp.ch, fill = "Genus", title = "Firmicutes Representation Across Samples")
+plot_bar(gp.ch, fill = "Genus", title = "Firmicutes Genera Distribution Across Samples")
 ```
 
 **Figure 6**: Representation and Distribution of Firmicutes Phyla across samples, colored by Genus
@@ -378,7 +378,7 @@ plot_bar(gp.ch, fill = "Genus", title = "Firmicutes Representation Across Sample
 
 ```{r Cyanobacteria/Chloroplast Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Cyanobacteria/Chloroplast")
-plot_bar(gp.ch, fill = "Family", title = "Cyanobacteria/Chloroplast Across Samples")
+plot_bar(gp.ch, fill = "Family", title = "Cyanobacteria/Chloroplast Family Distribution Across Samples")
 ```
 
 **Figure 7**: Representation and Distribution of Cyanobacteria/Chloroplast Phyla across samples, colored by Family
@@ -387,23 +387,30 @@ plot_bar(gp.ch, fill = "Family", title = "Cyanobacteria/Chloroplast Across Sampl
 
 ```{r Actinobacteria Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Actinobacteria")
-plot_bar(gp.ch, fill = "Genus", title = "Actinobacteria Across Samples")
+plot_bar(gp.ch, fill = "Genus", title = "Actinobacteria Genera Distribution Across Samples")
 ```
 
 **Figure 8**: Representation and Distribution of Actinobacteria Phyla across samples, colored by Genus
 
-**Figure 8 Description**: Actinobacteria is the first Phyla that is relatively well distributed across all samples except for two human ones (ERR1942285-female and ERR1942295- male). Furthermore the composition of ERR1942281,ERR1942283 and ERR1942294 are more similar to each other than the rest of the other samples (ERR1942281 and ERR1942283 are female samples while ERR1942294 is a computer mouse sample). These sequences have a greater degree of identification i  
+**Figure 8 Description**: Actinobacteria is the first Phyla that is relatively well distributed across all samples except for three human ones (ERR1942285-female, ERR1942295-male, and ERR1942297-male) and one computer mice (ERR1942292). Furthermore the composition of ERR1942281,ERR1942283 and ERR1942294 are more similar to each other than the rest of the other samples (ERR1942281 and ERR1942283 are female samples while ERR1942294 is a computer mouse sample). The general identification of unique sequence variants across all samples is much greater in this Phyla than in any other ones. The genera with the highest abundances per sample include: Gordonia, Microbacterium, Salinibacterium, and Streptomyces.
 
 ```{r Fusobacteria Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Fusobacteria")
-plot_bar(gp.ch, fill = "Genus", title = "Fusobacteria Across Samples")
+plot_bar(gp.ch, fill = "Genus", title = "Fusobacteria Genera Distribution Across Samples")
 ```
+
+**Figure 9**: Representation and Distribution of Fusobacteria Phyla across samples, colored by Genus
+
+**Figure 9 Description**: The only genus represented in the Fusobacteria Phyla, Leptotrichia, is displayed in Figure 9. There is only one sample which contains this entire genus, ERR1942289, a sample of female human origin. 
 
 ```{r Gemmatimonadetes Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Gemmatimonadetes")
-plot_bar(gp.ch, fill = "Genus", title = "Gemmatimonadetes Across Samples")
+plot_bar(gp.ch, fill = "Genus", title = "Gemmatimonadetes Genera Distribution Across Samples")
 ```
 
+**Figure 10**: Representation and Distribution of Gemmatimonadetes Phyla across samples, colored by Genus
+
+**Figure 10 Description**: Like the Fusobacteria Phyla, the Gemmatimonadetes Phyla is also represented by only one Genus in one particular sample. The Gemmatimonas Genus sequence variants seem to only be present in the ERR1942294 sample of computer mouse origin. 
 
 ```
 
