@@ -9,9 +9,15 @@ csl: bioinformatics.csl
 
 # Introduction
 
-The purpose of the study, Fierer et al. (2010) was to investigate a bioinformatically-enriched method to forensically identify indiviuals through their unique skin-associated bacterial colonies. 
+The human microbiota is often times more complex than trying to understand the 
+The purpose of the study, Fierer et al. (2010) was to investigate a  method to forensically identify indiviuals through their unique skin-associated bacterial colonies. 
 +The study aimed to address the ability to identify individuals based on compendial bacterial communities derived from surfaces (computer mice and/or keyboards) touched or owned by these individuals, and assessing whether the phylogenetic similarites between an individual's property (their mouse/keyboards), and their hands was significant enough to establish a correlational identification of that individual to their property.
 Add about half a page here. In this section instead of first person (I/we), use Fierer et al., since you'll just be describing what they did, based on the methods in their paper.
+
+Predictions (hypotheseses):
+1. There are prevalent phyla of bacteria specifically found on humans that are not found on the computer mice.
+2. These bacteria have health and biological implications that can be correlated.
+3. Lifestyle choices and personal hygeine can be inferred from the human samples where certain bacteria known to be pathogenic reside. 
 
 Add about 1.5-2 pages here. Must cite at least 5 peer reviewed articles.
 
@@ -365,6 +371,12 @@ plot_bar(gp.ch, fill = "Family", title = "Cyanobacteria/Chloroplast Across Sampl
 ```{r Actinobacteria Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Actinobacteria")
 plot_bar(gp.ch, fill = "Genus", title = "Actinobacteria Across Samples")
+```
+
+
+```{r Fusobacteria Across Samples}
+gp.ch = subset_taxa(phyloseq_obj, Phylum == "Fusobacteria")
+plot_bar(gp.ch, fill = "Genus", title = "Fusobacteria Across Samples")
 ```
 
 ```{r Ordination}
