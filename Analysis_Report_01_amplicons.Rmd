@@ -9,30 +9,27 @@ csl: bioinformatics.csl
 
 # Introduction
 
-   Complete quantification and representation of the bacterial diversity inherently present in the entire human microbiota represents a daunting task transcending multiple scales of magnitude: Bacterial diversity is directly influenced by factors such as the diet, lifestyle, and environmental conditions of the human host and indirectly influenced by factors such as the relationship dynamic between the communities present, the morphology and structure of the area where they reside, and the disease profile of the host (Grice et. al, 2008; Ying et. al, 2015). Furthermore, bacterial diversity also relies on the structure and composition of the commnuity itself, which differs greatly between individual sites on the same host (Ying et. al., 2015). Not only are most of the bacterial species unable to be cultured, but multiple factors  intricate ecological system that is both dependent on individual human differences (genetics, metabolics, and lifestyle-associated factors) as well as the inherent relationships present among the thousands of bacteria actively competing for residency within a human host. Although researchers have verified that the human body possesses micro-environments where differences between two places in the body in terms of bacterial abundance can be vast, the human skin has been a recent focus.
-
-  Among the reasons why the skin has become an important contributer to the identity and classification of human microbiota, is that:
+   Complete quantification and representation of the bacterial diversity inherently present in the entire human microbiota represents a daunting task transcending multiple scales of magnitude: Bacterial diversity is directly influenced by factors such as the diet, lifestyle, and environmental conditions of the human host and indirectly influenced by factors such as the relationship dynamic between the communities present, the morphology and structure of the area where they reside, and the disease profile of the host (Grice et. al, 2008; Ying et. al, 2015). Furthermore, bacterial diversity also relies on the structure and composition of the commnuity itself, which differs greatly between individual sites on the same host (Ying et. al., 2015). The study of the human microbiota has therefore, become a focus of increasing interest for many researchers because of its implications in modulation of the host metabolism, training of the innate immune system, and regulation of host behavior (Stojanovic, 2014). 
+  In particular, the skin microbiome is very interesting for researchers mainly because there are disagreements as to whether the diversity of this habitat has some constant residents and structure, or whether it is completely dynamic and able to be replaced. Among the factors that are known to influence the skin microbiota include age, gender, place of residence, and even communal living with animals (Troccaz, 2009; Ying et. al, 2015). Fierer et. al, has actually shown in two separate studies, that the the bacterial communities present on human palm skin have actually adapted to this hazardous environment and are uniquely permanent residents that can withstand multiple environmental stressors and are temporally durable (2008, 2010).
+   Among the reasons why the skin has become an important contributer to the identity and classification of human microbiota, is that:
   1. It is the largest organ in the human body.
   2. It is easily accessible and available for sampling.
-  3. Regions of skin can vary substantially based on humidity, temperature, morphology, and exposure to elements which directly influence how bacteria can grow on different surfaces.
-  
-  Of particular interest in the subset of human skin, are microbial communities residing on our hands. Our hands represent an interesting conjunction of these factors because they can be hairy or not hairy, sweat more than normal, are constantly exposed to the environment, and come into contact with literally any other community on our body which we may touch.
+  3. Regions of skin can vary substantially based on humidity, temperature, cellular structure, and exposure to elements which directly influence how bacteria.
+  In this particular study, analysis will be focused on a dataset created in the Fierer et. al. paper, Forensic identification using skin bacterial communities, 
 
 Predictions (hypotheseses):
 1. There are prevalent phyla of bacteria specifically found on humans that are not found on the computer mice.
 2. These bacteria have health and biological implications that can be correlated.
-3. Possible lifestyle choices and personal hygeine can be inferred from the human samples where certain bacteria known to be pathogenic reside. 
+3. Possible lifestyle choices and personal hygeine can be inferred from the human samples where certain bacteria known to be pathogenic reside.
 
 If there is an mis-representation of sequence variants per sample as their appears to be, then that might indicate that the raw-data is not being trimmed, nor processed appropriately.
-
-Add about 1.5-2 pages here. Must cite at least 5 peer reviewed articles.
 
 # Methods
 
 ## Sample origin and sequencing
 
   In this report, we analyze a raw dataset produced by Fierer et. al for their journal article "Forensic identification using skin bacterial communities" (2010). In this study, Fierer et. al creates the dataset by sampling the palms of nine individuals (four female and five male participants) with autoclaved, cotton-tipped swabs that were dipped in a sterile solution beforehand as well as his or her corresponding computer mouse that had been left untouched for twelve hours. Each swab
-  The DNA from each of the bacterial communities present was extracted in each sample were sequenced 
+  The DNA from each of the bacterial communities present was extracted in each sample were sequenced
 
 ## Computational
 Steps in DADA2 Pipeline:
@@ -43,7 +40,7 @@ Steps in DADA2 Pipeline:
 -Identified unique sequences from all the reads in each sample using DADA2
 -Created Sequence table and made a histogram to show that the majority of our sequences were 225 bp long.
 -Removed chimeras and built a table showing how many sequences we were left with at each step of the QC process. Table looks ok except for ERR199485 and ERR199482 which considerably lose most of the sequences composing that sample after the first sequence filter.
-These are the methods you used. Should probably be at least a half of a page. At a very minimum should include citations for DADA2 [@callahan2016] and phyloseq [@mcmurdie2013]. Note that these don't count towards the five references you need to cite in the introduction.
+
 
 # Results
 
@@ -338,9 +335,9 @@ plot_richness(phyloseq_obj,
 
 **Figure 3**: Alpha Diversity Measure in each sample, colored by organism (human or mouse)
 
-**Figure 3 Description**: Figure 3 also plots 
+**Figure 3 Description**:
 
-**Creating bar plots**: 
+**Creating bar plots**:
 
 Bar plots will be created to represent distribution of Genus (or in the case where the Genus is not available or specified, then the Family of the Phyla will be plotted instead). This will return bar plots where we can identify unique samples in the dataset that contain either:
 1.) A highly varied mix of of different Genera in one specific sample.
@@ -353,7 +350,7 @@ plot_bar(gp.ch, fill = "Genus", title = "Proteobacteria Genera Distribution Acro
 ```
 **Figure 4**: Representation and Distribution of Proteobacteria Phyla across samples, colored by Genus
 
-**Figure 4 Description**: Shown in Figure 4, are the Genera of the Proteobacteria phyla found in each sample. Individual bars per sample represent the total abundance or number of sequences in that sample, but are divided and color-coded by individual Genera to show the portion of the total that the particular Genera occupies in the sample. 
+**Figure 4 Description**: Shown in Figure 4, are the Genera of the Proteobacteria phyla found in each sample. Individual bars per sample represent the total abundance or number of sequences in that sample, but are divided and color-coded by individual Genera to show the portion of the total that the particular Genera occupies in the sample.
 
 Bartonella and Stappia are the most abundant, identifiable Genera sequences abundant across samples. Odd-numbered ERR sample numbers indicate human origin while even-numbered samples indicate computer mouse origin. Distribution of each Genera seems to be random and there is no clear pattern relating a Genera to a specific type of origin; however there are considerably a large number of unidentifiable sequence variants in human samples ERR1942291,ERR1942293, ERR1942295, ERR1942297 and ERR1942299 as these samples are almost, if not, completely grey. This result is not as common in the computer mice-derived samples as only samples ERR1942284 and ERR1942286 contain a large amount of unidentified sequence variants.
 
@@ -373,7 +370,7 @@ plot_bar(gp.ch, fill = "Genus", title = "Firmicutes Genera Distribution Across S
 
 **Figure 6**: Representation and Distribution of Firmicutes Phyla across samples, colored by Genus
 
-**Figure 6 Description**: Figure 6 shows the abundance distribution per sample of the Firmicutes Phyla. The top Genera found in samples are the Acetatifactor, Clostridium_sensu_stricto, Ruminococcus, Streptococcus, and Staphylococcus. Although abundance of different Genera has a greater distribution across samples, total abundance per sample is still very low. 
+**Figure 6 Description**: Figure 6 shows the abundance distribution per sample of the Firmicutes Phyla. The top Genera found in samples are the Acetatifactor, Clostridium_sensu_stricto, Ruminococcus, Streptococcus, and Staphylococcus. Although abundance of different Genera has a greater distribution across samples, total abundance per sample is still very low.
 
 
 ```{r Cyanobacteria/Chloroplast Across Samples}
@@ -383,7 +380,7 @@ plot_bar(gp.ch, fill = "Family", title = "Cyanobacteria/Chloroplast Family Distr
 
 **Figure 7**: Representation and Distribution of Cyanobacteria/Chloroplast Phyla across samples, colored by Family
 
-**Figure 7 Description**: Figure 7 displays the the Family of Streptophyta within the Cyanobacteria/Chlorplast Phyla across samples. This Phyla did not give applicable Genera names, so analysis was performed on the Family level. There is no clear trend apparent across samples or from a type of origin (Human or computer mice).In the taxa table, all of the unique sequence variants identified did not have any kind of Genera classfication. Because we cannot see the division in Genera in each individual bar as compared to the other graphs, this further limits our analysis of the different Genera that may be found within this Phyla. 
+**Figure 7 Description**: Figure 7 displays the the Family of Streptophyta within the Cyanobacteria/Chlorplast Phyla across samples. This Phyla did not give applicable Genera names, so analysis was performed on the Family level. There is no clear trend apparent across samples or from a type of origin (Human or computer mice).In the taxa table, all of the unique sequence variants identified did not have any kind of Genera classfication. Because we cannot see the division in Genera in each individual bar as compared to the other graphs, this further limits our analysis of the different Genera that may be found within this Phyla.
 
 ```{r Actinobacteria Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Actinobacteria")
@@ -401,7 +398,7 @@ plot_bar(gp.ch, fill = "Genus", title = "Fusobacteria Genera Distribution Across
 
 **Figure 9**: Representation and Distribution of Fusobacteria Phyla across samples, colored by Genus
 
-**Figure 9 Description**: The only genus represented in the Fusobacteria Phyla, Leptotrichia, is displayed in Figure 9. There is only one sample which contains this entire genus, ERR1942289, a sample of female human origin. 
+**Figure 9 Description**: The only genus represented in the Fusobacteria Phyla, Leptotrichia, is displayed in Figure 9. There is only one sample which contains this entire genus, ERR1942289, a sample of female human origin.
 
 ```{r Gemmatimonadetes Across Samples}
 gp.ch = subset_taxa(phyloseq_obj, Phylum == "Gemmatimonadetes")
@@ -410,7 +407,7 @@ plot_bar(gp.ch, fill = "Genus", title = "Gemmatimonadetes Genera Distribution Ac
 
 **Figure 10**: Representation and Distribution of Gemmatimonadetes Phyla across samples, colored by Genus
 
-**Figure 10 Description**: Like the Fusobacteria Phyla, the Gemmatimonadetes Phyla is also represented by only one Genus in one particular sample. The Gemmatimonas Genus sequence variants seem to only be present in the ERR1942294 sample of computer mouse origin. 
+**Figure 10 Description**: Like the Fusobacteria Phyla, the Gemmatimonadetes Phyla is also represented by only one Genus in one particular sample. The Gemmatimonas Genus sequence variants seem to only be present in the ERR1942294 sample of computer mouse origin.
 
 ```
 
