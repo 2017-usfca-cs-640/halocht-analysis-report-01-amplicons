@@ -8,13 +8,19 @@ csl: bioinformatics.csl
 ---
 
 # Introduction
-   Complete quantification and representation of the bacterial diversity inherently present in the entire human microbiota represents a daunting task transcending multiple scales of magnitude: Bacterial diversity is directly influenced by factors such as the diet, lifestyle, and environmental conditions of the human host and indirectly influenced by factors such as the relationship dynamic between the communities present, the morphology and structure of the area where they reside, and the disease profile of the host (Grice et. al, 2008; Ying et. al, 2015). Furthermore, bacterial diversity also relies on the structure and composition of the commnuity itself, which differs greatly between individual sites on the same host (Ying et. al., 2015). The study of the human microbiota has therefore, become a focus of increasing interest for many researchers because of its implications in modulation of the host metabolism, training of the innate immune system, and regulation of host behavior (Stojanovic, 2014). 
-  In particular, the skin microbiome is very interesting for researchers mainly because there are disagreements as to whether the diversity of this habitat has some constant residents and structure, or whether it is completely dynamic and able to be replaced. Among the factors that are known to influence the skin microbiota include age, gender, place of residence, and even communal living with animals (Troccaz, 2009; Ying et. al, 2015). Fierer et. al, has actually shown in two separate studies, that the the bacterial communities present on human palm skin have actually adapted to this hazardous environment and are uniquely permanent residents that can withstand multiple environmental stressors and are temporally durable (2008, 2010).
-  Among the reasons why the skin has become an important contributer to the identity and classification of human microbiota, is that:
+
+Complete quantification and representation of the bacterial diversity inherently present in the entire human microbiota represents a daunting task transcending multiple scales of magnitude: Bacterial diversity is directly influenced by factors such as the diet, lifestyle, and environmental conditions of the human host and indirectly influenced by factors such as the relationship dynamic between the communities present, the morphology and structure of the area where they reside, and the disease profile of the host (Grice et. al, 2008; Ying et. al, 2015). Furthermore, bacterial diversity also relies on the structure and composition of the commnuity itself, which differs greatly between individual sites on the same host (Ying et. al., 2015). The study of the human microbiota has therefore, become a focus of increasing interest for many researchers because of its implications in modulation of the host metabolism, training of the innate immune system, and regulation of host behavior (Stojanovic, 2014). 
+
+In particular, the skin microbiome is very interesting for researchers mainly because there are disagreements as to whether the diversity of this habitat has some constant residents and structure, or whether it is completely dynamic and able to be replaced. Among the factors that are known to influence the skin microbiota include age, gender, place of residence, and even communal living with animals (Troccaz, 2009; Ying et. al, 2015). Fierer et. al, has actually shown in two separate studies, that the the bacterial communities present on human palm skin have actually adapted to this hazardous environment and are uniquely permanent residents that can withstand multiple environmental stressors and are temporally durable (2008, 2010).
+
+Among the reasons why the skin has become an important contributer to the identity and classification of human microbiota, is that:
+
   1. It is the largest organ in the human body.
   2. It is easily accessible and available for sampling.
   3. Regions of skin can vary substantially based on humidity, temperature, cellular structure, and exposure to elements which directly influence how bacteria.
-  In this particular study, analysis will be focused on a dataset created in the Fierer et. al. paper, Forensic identification using skin bacterial communities, where identification of individuals was accomplished by swabbing both their hands and their computer mice for bacterial communities and comparing the skin communities to the computer mice communities. This report will instead focus on the multiple Phyla found in each sample and attempt to affirm the following hypothesis:
+  
+In this particular study, analysis will be focused on a dataset created in the Fierer et. al. paper, Forensic identification using skin bacterial communities, where identification of individuals was accomplished by swabbing both their hands and their computer mice for bacterial communities and comparing the skin communities to the computer mice communities. This report will instead focus on the multiple Phyla found in each sample and attempt to affirm the following hypothesis:
+
   1. There are prevalent phyla of bacteria specifically found on humans that are not found on the computer mice.
   2. These bacteria have health and biological implications that can be correlated.
   3. Possible lifestyle choices and personal hygeine can be inferred from the human samples where certain bacteria known to be pathogenic reside.
@@ -23,8 +29,9 @@ csl: bioinformatics.csl
 
 ## Sample origin and sequencing
 
-  In this report, we analyze a raw dataset produced by Fierer et. al for their journal article "Forensic identification using skin bacterial communities" (2010). In this study, Fierer et. al creates the dataset by sampling the palms of nine individuals (four female and five male participants) with autoclaved, cotton-tipped swabs that were dipped in a sterile solution beforehand as well as his or her corresponding computer mouse that had been left untouched for twelve hours. Each swab
-  The DNA from each of the bacterial communities present was extracted in each sample were sequenced using pyrosequencing methods.
+In this report, we analyze a raw dataset produced by Fierer et. al for their journal article "Forensic identification using skin bacterial communities" (2010). In this study, Fierer et. al creates the dataset by sampling the palms of nine individuals (four female and five male participants) with autoclaved, cotton-tipped swabs that were dipped in a sterile solution beforehand as well as his or her corresponding computer mouse that had been left untouched for twelve hours. Each swab
+
+The DNA from each of the bacterial communities present was extracted in each sample were sequenced using pyrosequencing methods.
 
 ## Computational
 Steps in DADA2 Pipeline:
