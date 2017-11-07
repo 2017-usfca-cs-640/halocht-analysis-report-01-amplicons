@@ -409,11 +409,12 @@ plot_bar(gp.ch, fill = "Genus", title = "Gemmatimonadetes Genera Distribution Ac
 
 The Phyla results from the plots across samples returned different results than the ones expected from literature searches about what Phyla are generally dominant and/or present on human skin surfaces. Among one of the most prevalent differences, was the fact that the Corynebacterium genus was completely absent from any of the samples in the Actinobacteria phyla plot. This bacteria is not only aerobic, but is responsible for production of nonvolatile sulfuric and acidic compounds in human sweat through its aminoacylase enzyme (Troccaz, 2009). Additionally the Staphylococcus Genera is virtually absent in all samples from the Firmicutes Phyla, even though Staphylococcus epidermis is one of the most abundant organisms on human skin (Ying et. al, 2015).
 
-Of additional importance 
+Of additional importance are the the Phyla which are solely represented by one sample. Future research of this dataset would include modeling these two phyla (Gemmatimonadetes and Fusobacteria) to see if there was any statistical significance in only finding these in computer mice or human females exlusively and why.
 
 
 
 
 # Sources Cited
 
+[@callahan2016; @Fierer2008; @Fierer2010; @Grice2011; @mcmurdie2013; @Rajilic-Stojanovic2014; @Troccaz2009; @Ying2015]
 
